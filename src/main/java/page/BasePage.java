@@ -1,0 +1,44 @@
+package page;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.Wait;
+import org.openqa.selenium.support.ui.WebDriverWait;
+
+import java.time.Duration;
+
+public class BasePage {
+
+    public static WebDriver driver;
+
+    public BasePage(WebDriver driver) {
+        BasePage.driver = driver;
+    }
+
+    public void waitUntilElementVisible(By by) {
+        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait.until(ExpectedConditions.visibilityOfElementLocated(by));
+    }
+
+    public void waitUntilElementClickable(By by) {
+        Wait<WebDriver> wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait.until(ExpectedConditions.elementToBeClickable(by));
+    }
+
+    public void click(By by) {
+        waitUntilElementClickable(by);
+        driver.findElement(by).click();
+    }
+
+    public WebElement getElement(By by) {
+        waitUntilElementVisible(by);
+        return driver.findElement(by);
+    }
+
+    public void sendKeys(By by, String text) {
+        waitUntilElementVisible(by);
+        driver.findElement(by).sendKeys(text);
+    }
+}

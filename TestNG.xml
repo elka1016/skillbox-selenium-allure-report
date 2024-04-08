@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="Smoke Test Suite" verbose="1"  parallel="classes" thread-count="1">
+    <listeners>
+        <listener class-name="util.AllureReportListener"/>
+    </listeners>
+    <test name="Smoke Test">
+        <classes>
+            <class name="test.LoginTest"/>
+            <class name="test.RegisterUserTest"/>
+            <class name="test.BuyItemTest"/>
+        </classes>
+    </test>
+</suite>
